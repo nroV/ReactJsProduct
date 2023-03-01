@@ -121,6 +121,7 @@ export default function RegisterPage() {
                                 name='email'
                                 onChange={OnChange}
                                 />
+                                                       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 
                             </div>
                             <div class="form-group mb-3">
@@ -132,23 +133,24 @@ export default function RegisterPage() {
                                 onChange={OnChange}
                                 
                                 />
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                <div id="emailHelp" class="form-text">We'll never share your password with anyone else.</div>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Avatar Profile</label>
-                                <br></br>
-                                <input type="file" className="file"
+                                  <label for="formFileMultiple" class="form-label">Browse Image for your avatar</label>
+                                  <br></br>
+                         
+                                <input type="file" className="form-control"
                                 name='avatar'
                                 onChange={OnChange}
                                 
                                 />
                             </div>
 
-                            <button type="submit" class="btn btn-dark border-white rounded w-100"
+                            <button type="submit" class="btn btn-dark border-white rounded w-100 my-3"
                                 onSubmit={OnRegister}
                             
                             
-                            >Save</button>
+                            >Register</button>
                         </form></div>
                     </div>
 

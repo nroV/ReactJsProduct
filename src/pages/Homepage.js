@@ -14,26 +14,28 @@ import secureLocalStorage from 'react-secure-storage'
 export function Homepage(props) {
 
   const [isback,SetBack] = useState(true);
-  const [isLoading, SetLoading] = useState(true)
+  const [isLoading, SetLoading] = useState(false)
 
   const [userAuth,setUserAuth] =useState({
     access_token: ""
    
 })
   useEffect(()=>{
-    
+      SetLoading(true)
       userAuth.access_token = secureLocalStorage.getItem('authlogin');
       setTimeout(()=>{
-        SetLoading(false);
+   
         props.Fetchproduct()
-     
+ 
         setProduct(props.product)
+        SetLoading(false)
 
       },1000)
+  
  
       console.log("use effect render")
       console.log(userAuth.access_token)
-    
+   
       
     
   },[])

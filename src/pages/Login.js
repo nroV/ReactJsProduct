@@ -55,10 +55,10 @@ export default function Loginform() {
 
 
                 <div className='content text-dark'>
-                    <div className="display-5 fw-bold text-dark text-center">Welcome back </div>
+                    <div className="display-5 fw-bold text-dark text-left">Welcome back, Time to Shop With Us </div>
                     <div className="img-top my-4">
 
-                        <img alt='img-name' src='https://images.unsplash.com/photo-1512374382149-233c42b6a83b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80' className='img-fluid'
+                        <img alt='img-name' src='https://images.unsplash.com/photo-1574634534894-89d7576c8259?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80' className='img-fluid'
 
                             style={{
                                 minWidth: "100%",
@@ -77,7 +77,7 @@ export default function Loginform() {
             </div>
             <div className='col-12 col-md-6 col-lg-7 my-5'>  
             
-             <form className='p-5' onSubmit={OnSubmitLogin}>
+             <form className='p-5 my-5' onSubmit={OnSubmitLogin}>
 
                 <h2 className='fw-bold'>Login</h2>
       

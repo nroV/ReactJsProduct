@@ -3,7 +3,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import secureLocalStorage from 'react-secure-storage';
-export default function SecondNavi () {
+export default function SecondNavi (props) {
+  const [counter,setCount] = useState(0)
+    const cart = props.cartcounter;
+
   const [isLogin, setLogin] = useState({
     token: ""
   });
@@ -22,11 +25,13 @@ export default function SecondNavi () {
     refreshpage('/Login')
   }
   useEffect(() => {
+
     isLogin.token = secureLocalStorage.getItem('authlogin');
     if (isLogin.token) {
       setHere(false)
       setRegister(false)
     }
+    console.log("cart nav",props.cartcounter)
   }, [])
   return (
     <nav className=''
@@ -49,6 +54,36 @@ export default function SecondNavi () {
           <Link to={'/add'}   className='text-decoration-none'><li>Create</li></Link> 
           {
             isLogin.token && <button type='submit' className='rounded fw-bold border-0 '  onClick={OnLogout}>Logout</button>
+          }
+                   {
+               !Login &&  
+             <li style={{
+              marginRight:"30px"
+            }}>
+  
+              
+        
+              <span>
+              <span>Cart</span>
+              {/* <span class="material-symbols-outlined" style={{
+                position:"absolute",
+                top:"0px",
+       
+              }}>
+              sell
+        
+            </span> */}
+                    <span style={{
+                      position:"relative",
+                      bottom:"5px",
+                      left:"5px",
+            
+                
+                    }}>{cart}</span>
+              </span>
+           
+           
+             </li>
           }
           {
             Login && <Link to={'/login'} className='text-decoration-none '><li>Login</li></Link>

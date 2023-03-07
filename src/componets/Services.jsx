@@ -2,10 +2,21 @@ import React from 'react'
 
 export default function Services() {
   return (
-    <div className='container mb-5'>
+    <div className='container mb-5' style={{
+      marginTop:"170px"
+    }}>
       <div className='row justify-content-center'>
+        <div className="col-12 mb-5">
+              <h1 className='text-center fw-bold'  style={{
+                fontSize:"5em"
+              }}>Shopping <span className='text-success'>Now</span>
+            </h1>
+            <h3 className='text-center my-5' >
+            Access to every single latest & added product for just $2.99 a month.
+            </h3>
+        </div>
 
-        <div className="col-12 col-lg-4 ">
+        <div className="col-12 col-lg-4">
           <div className="card text-dark" style={{
             minHeight: "100%",
             background: "#F4F4F4"

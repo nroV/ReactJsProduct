@@ -5,10 +5,15 @@ import TabBar from '../componets/TabBar'
 
 export default function ProductDetail() {
   return (
-    <div>
+    <>
+        <div style={{
+          marginTop:"100px"
+        }}>
   
-         <TabBar />
-          <CardDetail />
-    </div>
+        <TabBar />
+         <CardDetail />
+      </div>
+    </>
+
   )
 }

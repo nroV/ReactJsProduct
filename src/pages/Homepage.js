@@ -11,91 +11,176 @@ import { connect } from 'react-redux'
 import { Fetchproduct } from '../Service/Action/GetBookAction'
 import SkeletonProduct from '../componets/SkeletonCard'
 import secureLocalStorage from 'react-secure-storage'
+import Joinus from '../componets/Joinus'
+import { Fetchcategory } from '../Service/Action/GetCategory'
 export function Homepage(props) {
 
-  const [isback,SetBack] = useState(true);
+  const [isback, SetBack] = useState(true);
   const [isLoading, SetLoading] = useState(false)
 
-  const [userAuth,setUserAuth] =useState({
+  const [isactive, setActive] = useState();
+
+  const [category, setCategory] = useState([
+
+  ])
+
+  const [activeclass, setClass] = useState()
+  const onHandleCate = (id) => {
+    console.log(id)
+
+    setcid(id)
+    props.Fetchproduct(cid)
+  }
+  const [userAuth, setUserAuth] = useState({
     access_token: ""
-   
-})
-  useEffect(()=>{
-      SetLoading(true)
-      userAuth.access_token = secureLocalStorage.getItem('authlogin');
-      setTimeout(()=>{
-   
-        props.Fetchproduct()
- 
-        setProduct(props.product)
-        SetLoading(false)
 
-      },1000)
-  
- 
-      console.log("use effect render")
-      console.log(userAuth.access_token)
-   
-      
-    
-  },[])
+  })
+
+  const [cid, setcid] = useState(1);
+  useEffect(() => {
+    setClass({
+      border: "1px solid white",
+
+    })
+    SetLoading(true)
+    userAuth.access_token = secureLocalStorage.getItem('authlogin');
+    setTimeout(() => {
+
+      props.Fetchproduct(cid)
+
+      setProduct(props.product)
+      SetLoading(false)
+
+    }, 1000)
 
 
-  const [pro,setProduct] = useState([])
+    console.log("use effect render")
+    console.log(userAuth.access_token)
+
+    Fetchcategory().
+      then(res => res.json()).
+      then(data => {
+        console.log(data);
+        setCategory(data)
+      })
+
+  }, [])
+
+
+  const [pro, setProduct] = useState([])
 
 
   return (
     <>
-    {/* {console.log(props.product)} */}
-    {/* {console.log(pro)} */}
-    {/* {console.log(isLoading)} */}
-    
+      {/* {console.log(props.product)} */}
+      {/* {console.log(pro)} */}
+      {/* {console.log(isLoading)} */}
+
       <Navi />
-  
+
       <Body />
       <Services />
 
 
+      <Joinus />
+
+
 
       {
-        userAuth.access_token &&  
-        
+        userAuth.access_token &&
+
         <div className='container'>
-                <TabBar />
-        <div className='row g-3'>
-          {
-             isLoading && <SkeletonProduct /> 
-           
-          }
+          <div className='my-5'>
+            {
+              console.log(category)
+            }
+            <div className='tab container d-flex justify-content-center '>
+              {category && category.map(cate => (
 
 
-       { pro && props.product.map(product =>(
-
-            
-      <CardProduct products={product} key={product.id}/>
-
-              
-
-    ))}
+                <button
 
 
-       </div>
 
-      </div>
+                  className='btn rounded-lg mx-3' onClick={() => onHandleCate(cate.id)}
+
+                  style={activeclass}
+                >
+                  <div >
+                    {cate.name}
+
+
+                  </div>
+
+                </button>
+
+              ))}
+
+            </div>
+
+
+          </div>
+          {/* <TabBar cate={category} /> */}
+          <div className='row g-3 my-5'>
+
+            <div className="col-12 my-5" >
+
+            <p className="header display-6 fw-bold">Filter</p>
+              <div className="price-range d-flex align-items-center" >
+
+                <label class="form-check-label">Price </label>
+                <input class="form-control mx-3" name="" id="" type="text" placeholder='MIN' />
+                <input class="form-control " name="" id="" type="text" placeholder='MAX' />
+                <button className='btn btn-success mx-3'>comfirm</button>
+
+
+
+
+                <label class="form-check-label">Product </label>
+                <input class="form-control mx-3" name="" id="" type="text" placeholder='Name' />
+               
+                <button className='btn btn-success mx-3 '>Search</button>
+
+   
+              </div>
+          
+
+             
+
+            </div>
+            {
+              isLoading && <SkeletonProduct />
+
+            }
+
+
+            {pro && props.product.map(product => (
+
+
+              <CardProduct products={product} key={product.id} />
+
+
+
+            ))}
+
+
+          </div>
+
+        </div>
       }
-  
-    
+
+
       {/* <Footer>
       </Footer> */}
 
     </>
   )
 }
-const mtp =(store) =>{
+const mtp = (store) => {
   return {
-        product:store.productreducer.products
+    product: store.productreducer.products
   }
 }
 
 
-export default connect(mtp,{Fetchproduct})(Homepage)
+export default connect(mtp, { Fetchproduct })(Homepage)

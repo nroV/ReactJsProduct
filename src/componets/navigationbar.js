@@ -15,7 +15,7 @@ export default function Navi() {
     setRegister(true)
     setLogin(
       {
-        token:""
+        token: ""
       }
     )
     refreshpage('/Login')
@@ -41,16 +41,49 @@ export default function Navi() {
           <Link to={'/'} className='text-decoration-none'> <li>Home</li></Link>
           <Link to={'/add'} className='text-decoration-none'><li>Create</li></Link>
           {
-            isLogin.token && <button  type='submit' className='rounded fw-bold border-0 ' onClick={OnLogout}>Logout</button>
+            isLogin.token && <button type='submit' className='rounded fw-bold border-0 ' onClick={OnLogout}>Logout</button>
           }
+          {
+               !Login &&  
+             <li style={{
+              marginRight:"30px"
+            }}>
+  
+              
+        
+              <span>
+              <span>Cart</span>
+              {/* <span class="material-symbols-outlined" style={{
+                position:"absolute",
+                top:"0px",
+       
+              }}>
+              sell
+        
+            </span> */}
+                    <span style={{
+                      position:"relative",
+                      bottom:"5px",
+                      left:"5px",
+            
+                
+                    }}>0</span>
+              </span>
+           
+           
+             </li>
+          }
+        
+
+        
           {
             Login && <Link to={'/login'} className='text-decoration-none '><li>Login</li></Link>
           }
           {
-            Register &&  <Link to={'/register '} className='text-decoration-none'><li>Register</li></Link>
+            Register && <Link to={'/register '} className='text-decoration-none'><li>Register</li></Link>
           }
 
-         
+
         </ul>
 
       </nav>

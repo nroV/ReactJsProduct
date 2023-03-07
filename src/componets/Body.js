@@ -4,7 +4,7 @@ export default function Body() {
     return (
         <div >
 
-            <main className='my-5'>
+            <main className='my-5' >
                 <div className='wear'>
                     <p>Wear the Best.</p>
                 </div>
@@ -36,7 +36,9 @@ export default function Body() {
 
             </main>
 
-            <section className='my-5'>
+            <section className='' style={{
+      marginTop:"170px"
+    }}>
                 <div className='tall'>
                       <h1>STREET STYLE</h1>
                       <div className="box"></div>

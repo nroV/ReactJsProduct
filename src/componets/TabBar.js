@@ -1,23 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export default function 
-() {
+
+export default function
+  (props) {
+  // useEffect(()=>{
+  //       Fetchcategory().then(res=>res.json())
+  //       .then(res=>console.log("category",res))
+  // },[])
+  const category = props.cate;
   return (
+
     <div className='my-5'>
-                <div className='tab container d-flex justify-content-center '>
-                        <div>
-                           All Category
-                        </div>
-                        <div>
-                          Men Product
-                        </div>
-                        <div>
-                        Women Product
-                        </div>
-                        <div>
-                            Other
-                        </div>
-                </div>
+      {
+        console.log(category)
+      }
+      <div className='tab container d-flex justify-content-center '>
+        {category && category.map(cate => (
+
+
+         <div >
+              {cate.name} 
+              
+              
+              </div>
+
+
+
+        ))}
+
+      </div>
     </div>
   )
 }

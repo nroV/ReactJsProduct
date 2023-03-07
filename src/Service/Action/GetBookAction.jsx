@@ -1,9 +1,9 @@
 import { ActionTypes } from "./ActioType"
 import { Header, Product_Url } from "../Constant/Api"
-export const Fetchproduct = ()=>{
+export const Fetchproduct = (cid)=>{
 
          return (dispatch) =>{
-                fetch(Product_Url,{
+                fetch(`${Product_Url}?categoryId=${cid}`,{
                     method:"GET",
                     headers:Header
                 }).then(res=>res.json())
@@ -13,4 +13,5 @@ export const Fetchproduct = ()=>{
                 }))
                 .catch(err=>console.log(err))
         }
+     
 }

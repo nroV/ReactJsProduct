@@ -7,11 +7,13 @@ export default function CardProduct(props) {
   const product = props.products;
   return (
     <>
-          {console.log(product)}
+          {console.log(product.id)}
 
     <div className='col-12 col-lg-4'>
            <div className='card p-0 m-0 border-0'>
-    </div>
+
+            
+
      
      <Link to={`/read/${product.id}`} >   <img src={product.images[0]} className="card-img-top" alt="..."
 
@@ -74,7 +76,7 @@ export default function CardProduct(props) {
         </div>
       </div>
 
-
+      </div>
 
 
     </>

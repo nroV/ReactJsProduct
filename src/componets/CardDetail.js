@@ -15,6 +15,9 @@ export function CardDetail(props) {
     const [isImg,setImg] = useState({
   
     })
+    const onCart = ()=>{
+        setCounter(counter+1)
+    }
     const navigator = useNavigate()
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -23,6 +26,7 @@ export function CardDetail(props) {
            props.FetchProductID(id)
     
           setImg(images)
+      
     },[])
     const {title,description,category,images,price} = props.pid
  
@@ -31,11 +35,14 @@ export function CardDetail(props) {
             alert('your item has been deleted')
             navigator('/')
     }
+
+    const [counter, setCounter] = useState(0);
     return (
         
         <div className='container my-5'>   
-        <SecondNavi />
-                {console.log(props.pid)}
+        <SecondNavi cartcounter={counter} />
+                {/* {console.log(props.pid)} */}
+                {    console.log("counter",counter)}
           
             <div className="row justify-content-center align-items-center my-5">
             <div className="col-12 col-lg-6">
@@ -187,9 +194,9 @@ export function CardDetail(props) {
                             }}><span style={{
                             
                             }}>+</span></button>
-                            <div className="cart bg-success fw-100 text-center p-2 rounded" style={{
+                            <button className="cart bg-success fw-100 text-center p-2 rounded text-white border-0" style={{
                                 margin:"0px 15px"
-                            }}> Add to Card</div>
+                            }} onClick={onCart}> Add to Card</button>
                             <button className='btn fw-bold display-2 rounded' style={{
                                 backgroundColor:"#f8f9fa",
                       

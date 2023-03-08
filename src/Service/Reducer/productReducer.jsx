@@ -2,6 +2,7 @@ import { ActionTypes } from "../Action/ActioType";
 
 const intialstate = {
         products: [],
+        pfilter:[],
         category: [],
         pproduct: {},
         imgresponse: {},
@@ -45,6 +46,11 @@ export const ProductReducer = (state = intialstate, action) => {
                                 ...state,
                                 updateresponse:action.payload
                         }
+                case ActionTypes.filter_product:
+                                return{
+                                        ...state,
+                                       pfilter:action.payload
+                                }
                 default:
                         return state;
 

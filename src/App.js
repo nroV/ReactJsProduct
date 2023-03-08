@@ -12,6 +12,7 @@ import SkeletonProduct from './componets/SkeletonCard';
 import RegisterPage from './pages/RegisterPage';
 import Loginform from './pages/Login';
 
+import { ProductFilter } from './pages/FilterProduct';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route  path='*' element={<ErrorPage />}></Route>
             <Route  path='/register' element={<RegisterPage />}></Route>
             <Route  path='/login' element={<Loginform />}></Route>
+            <Route  path='/filter/:price_min/:price_max' element={<ProductFilter />}></Route>
             {/* <Route path='/' element={ <SkeletonProduct />} /> */}
             {/* <Route exact path='/' element={<CardDetail />}></Route> */}
         </Routes>

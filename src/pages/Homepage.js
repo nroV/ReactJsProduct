@@ -8,13 +8,37 @@ import Footer from '../componets/footer'
 import Services from '../componets/Services'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Fetchproduct } from '../Service/Action/GetBookAction'
+import { Fetchproduct } from '../Service/Action/FetchAllProduct'
 import SkeletonProduct from '../componets/SkeletonCard'
 import secureLocalStorage from 'react-secure-storage'
 import Joinus from '../componets/Joinus'
 import { Fetchcategory } from '../Service/Action/GetCategory'
+import { useNavigate } from 'react-router-dom'
 export function Homepage(props) {
 
+  const [price,setprice] = useState({
+      "price_min":"",
+      "price_max":"",
+  })
+  const OnPriceHandle=(e)=>{
+     const {name,value} = e.target;
+
+     setprice(prestate=>{
+        return {
+          ...prestate,
+          [name]:value
+        }
+     })
+     console.log(price)
+  }
+
+  const OnSubmitPrice= (e)=>{
+    e.preventDefault()
+      redirect(`/filter/${price.price_min}/${price.price_max}`)
+
+
+  }
+  const redirect = useNavigate();
   const [isback, SetBack] = useState(true);
   const [isLoading, SetLoading] = useState(false)
 
@@ -26,7 +50,7 @@ export function Homepage(props) {
 
   const [activeclass, setClass] = useState()
   const onHandleCate = (id) => {
-    console.log(id)
+    // console.log(id)
 
     setcid(id)
     props.Fetchproduct(cid)
@@ -54,7 +78,7 @@ export function Homepage(props) {
     }, 1000)
 
 
-    console.log("use effect render")
+    // console.log("use effect render")
     console.log(userAuth.access_token)
 
     Fetchcategory().
@@ -92,7 +116,7 @@ export function Homepage(props) {
         <div className='container'>
           <div className='my-5'>
             {
-              console.log(category)
+              // console.log(category)
             }
             <div className='tab container d-flex justify-content-center '>
               {category && category.map(cate => (
@@ -129,9 +153,25 @@ export function Homepage(props) {
               <div className="price-range d-flex align-items-center" >
 
                 <label class="form-check-label">Price </label>
-                <input class="form-control mx-3" name="" id="" type="text" placeholder='MIN' />
-                <input class="form-control " name="" id="" type="text" placeholder='MAX' />
-                <button className='btn btn-success mx-3'>comfirm</button>
+                <input class="form-control mx-3" name="price_min"
+                 id="" 
+                 type="text" 
+                 placeholder='MIN'
+                 onChange={OnPriceHandle}
+                  />
+                <input class="form-control
+                 " name="price_max" 
+                 id="" type="text"
+                  placeholder='MAX' 
+                  onChange={OnPriceHandle}
+
+
+
+
+                  
+                  
+                  />
+                <button type='submit'className='btn btn-success mx-3' onClick={OnSubmitPrice}>comfirm</button>
 
 
 

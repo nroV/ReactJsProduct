@@ -9,5 +9,6 @@ export const ActionTypes ={
     deleteproduct : "deletepro",
     UpdateProduct : "UpdatingProduct",
     LoginUsers:"Loginnew",
+    filter_product:"filter"
 
 }
